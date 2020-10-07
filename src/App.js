@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import InfoBox from "./components/InfoBox";
 import Table from "./components/Table";
-import {sortData} from './util'
+import LineGraph from "./components/LineGraph";
+import { sortData } from "./util";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -52,7 +54,7 @@ function App() {
 
   return (
     <div className="app bg-gray-200 h-screen flex p-8">
-      <section className="left-section w-9/12 p-8">
+      <section className="left-section w-9/12 px-4">
         <header className="flex justify-between mb-5">
           <h1 className="text-4xl">Covid-19 Tracker</h1>
           <form className="">
@@ -96,6 +98,9 @@ function App() {
           <Table countries={tableData} />
         </div>
         <p>Worldwide New Cases</p>
+        <div>
+        <LineGraph casesType={casesType} />
+        </div>
         {/* Graph */}
       </section>
     </div>
