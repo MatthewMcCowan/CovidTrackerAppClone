@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import InfoBox from "./components/InfoBox";
+import Table from "./components/Table";
+import {sortData} from './util'
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     fetch("https://disease.sh/v3/covid-19/all")
@@ -21,6 +24,8 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2,
           }));
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
@@ -46,7 +51,7 @@ function App() {
   console.log(countryInfo);
 
   return (
-    <div className="app bg-gray-100 h-screen flex p-8">
+    <div className="app bg-gray-200 h-screen flex p-8">
       <section className="left-section w-9/12 p-8">
         <header className="flex justify-between mb-5">
           <h1 className="text-4xl">Covid-19 Tracker</h1>
@@ -84,11 +89,14 @@ function App() {
         </aside>
       </section>
 
-      <section className="right-section w-3/12 p-8 border-l">
-        <main>
-          <h2>Live Cases by Country</h2>
-          <p>WorldWide New Cases</p>
-        </main>
+      <section className="right-section w-3/12 bg-white p-4">
+        <h2 className="mb-4 text-2xl ">Live Cases by Country</h2>
+
+        <div className="container h-half overflow-auto my-4">
+          <Table countries={tableData} />
+        </div>
+        <p>Worldwide New Cases</p>
+        {/* Graph */}
       </section>
     </div>
   );
