@@ -701,6 +701,7 @@ module.exports = {
       "odd",
       "hover",
       "focus",
+      "active",
     ],
     backgroundImage: ["responsive"],
     gradientColorStops: ["responsive", "hover", "focus"],
