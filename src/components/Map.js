@@ -5,7 +5,7 @@ import '../map.css'
 
 const Map = ({ countries, casesType, center, zoom }) => {
   return (
-    <div className='h-full rounded p-0 shadow bg-blue-100 map'>
+    <div className='h-full rounded p-0 shadow-lg bg-blue-100 map'>
       <LeafletMap center={center} zoom={zoom} >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

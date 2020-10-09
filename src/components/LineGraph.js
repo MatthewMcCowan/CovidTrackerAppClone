@@ -84,7 +84,7 @@ const LineGraph = ({ casesType }) => {
   }, [casesType]);
 
   return (
-    <div>
+    <div className='border-2 h-64'>
       {data?.length > 0 && (
         <Line
           data={{

@@ -64,9 +64,9 @@ function App() {
 
   return (
     <div className="app bg-gray-200 h-screen flex p-8">
-      <section className="left-section w-9/12 px-4 h-full border flex flex-col">
+      <section className=" w-9/12 px-4 h-full flex flex-col">
         <header className="flex justify-between mb-5">
-          <h1 className="text-4xl">Covid-19 Tracker</h1>
+          <h1 className="text-4xl text-blue-700 font-extrabold tracking-wider uppercase">Covid-19 Tracker</h1>
           <form className="">
             <select
               onChange={onCountryChange}
@@ -84,25 +84,30 @@ function App() {
         </header>
         <aside className="grid grid-rows-1 h-64 w-auto grid-flow-col gap-4 mb-4">
           <InfoBox
+            isRed
             onClick={(e) => setCasesType("cases")}
             title="CoronaVirus Cases"
             cases={prettyPrintStat(countryInfo.todayCases)}
             total={prettyPrintStat(countryInfo.cases)}
+            active={casesType === "cases"}
           />
           <InfoBox
             onClick={(e) => setCasesType("recovered")}
             title="Recovered"
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={prettyPrintStat(countryInfo.recovered)}
+            active={casesType === "recovered"}
           />
           <InfoBox
+            isRed
             onClick={(e) => setCasesType("deaths")}
             title="Deaths"
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={prettyPrintStat(countryInfo.deaths)}
+            active={casesType === "deaths"}
           />
         </aside>
-        <div className="border-lg h-half flex-grow shadow-lg">
+        <div className=" h-half flex-grow shadow-lg">
           <Map
             countries={mapCountries}
             casesType={casesType}
@@ -112,14 +117,14 @@ function App() {
         </div>
       </section>
 
-      <section className="right-section w-3/12 bg-blue-100 p-4">
+      <section className="right-section w-3/12 bg-blue-100 p-4 grid grid-cols-1 ">
         <h2 className="mb-4 text-2xl ">Live Cases by Country</h2>
 
-        <div className="container h-half overflow-auto my-4">
+        <div className=" h-full overflow-auto">
           <Table countries={tableData} />
         </div>
-        <p className="mb-4 text-2xl ">Worldwide New {casesType}</p>
-        <div>
+        <p className="my-4 text-2xl ">Worldwide New {casesType}</p>
+        <div className=''>
           <LineGraph casesType={casesType} />
         </div>
         {/* Graph */}

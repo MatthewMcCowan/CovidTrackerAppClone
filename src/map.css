@@ -9,3 +9,11 @@
     border-radius: 25px;
     
 }
+
+.infoBox--selected {
+    border-top: 10px solid greenyellow;
+}
+
+.infoBox--red {
+    border-color: red;
+}
